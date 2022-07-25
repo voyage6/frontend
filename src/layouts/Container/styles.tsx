@@ -11,13 +11,14 @@ export const Header = styled.header`
   margin-bottom: 1em;
   & h1 {
     margin-bottom: 0;
+    font-weight: 700;
   }
 `;
 
 export const Nav = styled.nav`
   display: flex;
   justify-content: center;
-  padding-bottom: 0.5em;
+  padding: 0.5em;
   border-bottom: 1px solid #d9d9d9;
 `;
 

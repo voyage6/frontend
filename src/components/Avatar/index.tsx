@@ -2,6 +2,7 @@ import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import React from 'react';
 import styled from 'styled-components';
+import { Wapper } from './styles';
 
 const AvatarWapper = () => {
   return (
@@ -12,10 +13,3 @@ const AvatarWapper = () => {
 };
 
 export default AvatarWapper;
-
-export const Wapper = styled.div`
-  position: absolute;
-  top: 45px;
-  right: 20px;
-  transform: translateY(-50%);
-`;
