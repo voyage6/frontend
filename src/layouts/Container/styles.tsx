@@ -7,4 +7,26 @@ export const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 80px;
+  margin-bottom: 1em;
+  & h1 {
+    margin-bottom: 0;
+  }
+`;
+
+export const Nav = styled.nav`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #d9d9d9;
+`;
+
+export const NavItem = styled.div`
+  margin: 0 1em;
+  cursor: pointer;
+  transition: transform 200ms;
+  &:hover {
+    transform: translateY(-2px);
+    font-weight: 500;
+  }
 `;

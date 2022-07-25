@@ -6,9 +6,7 @@ import styled from 'styled-components';
 const AvatarWapper = () => {
   return (
     <Wapper>
-      <div>
-        <Avatar size={45} icon={<UserOutlined />} />
-      </div>
+      <Avatar size={30} icon={<UserOutlined />} />
     </Wapper>
   );
 };
@@ -17,6 +15,7 @@ export default AvatarWapper;
 
 export const Wapper = styled.div`
   position: absolute;
-  top: 27px;
+  top: 45px;
   right: 20px;
+  transform: translateY(-50%);
 `;
