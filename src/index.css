@@ -11,3 +11,18 @@ body{
 .ant-card{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+ul,li{
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+
+a{
+    color:#FFC769;
+}
+
+a:hover{
+    color:#FFC769;
+}

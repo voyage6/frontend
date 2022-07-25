@@ -12,6 +12,7 @@ export const Header = styled.header`
   & h1 {
     margin-bottom: 0;
     font-weight: 700;
+    cursor: pointer;
   }
 `;
 

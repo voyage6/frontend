@@ -1,16 +1,19 @@
 import React from 'react';
 import { ButtonWrapper, HomeWrapper, WriteButton } from './styles';
 import PostList from '../../components/PostList';
-import { PostListContainer, PostListHeader } from '../../components/PostList/styles';
+import { MaxWidthContainer, PostListHeader } from '../../components/PostList/styles';
 import { allPosts, recentPosts } from '../../services/mock';
 import { Divider } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <HomeWrapper>
-      <PostListContainer>
+      <MaxWidthContainer>
         <ButtonWrapper>
-          <WriteButton>
+          <WriteButton onClick={() => navigate('/post/write')}>
             <img src='/images/write.svg' alt='write' />
             작성하기
           </WriteButton>
@@ -20,7 +23,7 @@ const Home = () => {
         <Divider />
         <PostListHeader>최신 악보</PostListHeader>
         <PostList data={allPosts} />
-      </PostListContainer>
+      </MaxWidthContainer>
     </HomeWrapper>
   );
 };
