@@ -13,7 +13,7 @@ const Home = () => {
     <HomeWrapper>
       <MaxWidthContainer>
         <ButtonWrapper>
-          <WriteButton onClick={() => navigate('/post/write')}>
+          <WriteButton onClick={() => navigate('/write')}>
             <img src='/images/write.svg' alt='write' />
             작성하기
           </WriteButton>

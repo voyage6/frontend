@@ -15,7 +15,7 @@ const SelectBox: React.FC = () => {
     <Select
       labelInValue
       defaultValue={{ value: 'category', label: '카테고리' }}
-      style={{ width: 150 }}
+      style={{ width: 150, margin: '.5em 0 1.5em 0' }}
       onChange={handleChange}
     >
       <Option disabled value='카테고리'>

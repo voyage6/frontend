@@ -16,7 +16,7 @@ function App() {
           <Route path='/signUp' element={<div>signUp page</div>} />
           <Route path='/myPage' element={<div>myPage</div>} />
           <Route path='/post/:id' element={<PostPage />} />
-          <Route path='/post/write' element={<WritePage />} />
+          <Route path='/write' element={<WritePage />} />
         </Routes>
       </Container>
     </Suspense>
