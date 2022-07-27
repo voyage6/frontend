@@ -2,7 +2,7 @@ import React, { ChangeEvent, ChangeEventHandler, useCallback, useEffect, useStat
 import { MaxWidthContainer } from '../../components/PostList/styles';
 import { SubTitle } from './write';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPostById } from '../../api/fetchPostById';
 import { Post } from '../../typings/Post';
 import { AxiosError } from 'axios';
@@ -14,9 +14,11 @@ import Editor from '../../components/CommentEditor';
 import { Input } from 'antd';
 import { addComment, CommentDto } from '../../api/addComment';
 import { AxiosManager } from '../../services/AxiosManager';
+import { deletePost } from '../../api/deletePost';
 
 const Detail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data } = useQuery<Post, AxiosError>(['post', id], () => fetchPostById(parseInt(id!)), {
     enabled: !!id,
   });
@@ -27,6 +29,17 @@ const Detail = () => {
       setSubmitting(false);
     },
   });
+
+  const onDeletePost = useCallback(async () => {
+    if (!id) return;
+
+    const res = await deletePost(parseInt(id));
+    console.log(res);
+
+    if (res.status >= 200 && res.status < 400) {
+      navigate(-1);
+    }
+  }, [id, navigate]);
 
   const [commentValue, setCommentValue] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -53,7 +66,7 @@ const Detail = () => {
         {data.title} <CategoryBox>{data.category}</CategoryBox>
       </SubTitle>
       <InfoBox>
-        {data.writerName} | {data.createdAt}
+        {data.writerName} | {data.createdAt} <DeleteButton onClick={onDeletePost}>삭제</DeleteButton>
       </InfoBox>
       <ImageSlider data={data.imgUrls} />
       <TextContent>{data.contents}</TextContent>
@@ -63,6 +76,7 @@ const Detail = () => {
           avatar: '/images/avatar.jpeg', //FIXME: 유저 프로필 이미지 등록하기 아니면 기본프로필 적용
           content: c.contents,
           datetime: c.createdAt,
+          id: 9999,
         }))}
       />
       <Editor onSubmit={onSubmit} submitting={submitting} onChange={onChange} value={commentValue} />
@@ -87,4 +101,9 @@ export const InfoBox = styled.div`
 
 export const TextContent = styled.div`
   margin-top: 4em;
+`;
+
+export const DeleteButton = styled.span`
+  color: tomato;
+  cursor: pointer;
 `;

@@ -1,16 +1,20 @@
 import { Comment, List, Tooltip } from 'antd';
 import moment from 'moment';
-import React from 'react';
+import React, { useCallback } from 'react';
+import { removeComment } from '../../api/removeComment';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
-interface Comment {
+interface IComment {
   author: string;
   avatar: string;
   content: string;
   datetime: string;
+  id: number;
 }
 
 interface Props {
-  data: Comment[];
+  data: IComment[];
 }
 
 const convertContent = (content: string) => {
@@ -29,23 +33,46 @@ const convertDateTime = (dateTime: string) => {
   );
 };
 
-const Comments: React.FC<Props> = ({ data }) => (
-  <List
-    className='comment-list'
-    header={`${data.length} replies`}
-    itemLayout='horizontal'
-    dataSource={data}
-    renderItem={(item) => (
-      <li>
-        <Comment
-          author={item.author}
-          avatar={item.avatar}
-          content={convertContent(item.content)}
-          datetime={convertDateTime(item.datetime)}
-        />
-      </li>
-    )}
-  />
-);
+const Comments: React.FC<Props> = ({ data }) => {
+  const { id } = useParams();
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation((commentId: number) => removeComment(commentId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['post', id]);
+    },
+  });
+
+  const onDelete = useCallback(
+    (commentId: number) => {
+      mutate(commentId);
+    },
+    [data]
+  );
+
+  return (
+    <List
+      className='comment-list'
+      header={`${data.length} replies`}
+      itemLayout='horizontal'
+      dataSource={data}
+      renderItem={(item) => (
+        <li>
+          <Comment
+            author={item.author}
+            avatar={item.avatar}
+            content={convertContent(item.content)}
+            datetime={convertDateTime(item.datetime)}
+            actions={[
+              <span key='comment-nested-reply-to' onClick={() => onDelete(item.id)}>
+                삭제
+              </span>,
+            ]}
+          />
+        </li>
+      )}
+    />
+  );
+};
 
 export default React.memo(Comments);
