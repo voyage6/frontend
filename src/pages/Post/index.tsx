@@ -52,7 +52,7 @@ const Detail = () => {
     mutate({ postId: parseInt(id), contents: commentValue });
     setCommentValue('');
     setSubmitting(true);
-  }, [commentValue]);
+  }, [commentValue, id, mutate]);
 
   if (!data) {
     return <CenterSpinner />;

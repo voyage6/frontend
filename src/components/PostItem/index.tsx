@@ -4,6 +4,7 @@ import { CardItem } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { Post } from '../../typings/Post';
 import { MessageOutlined } from '@ant-design/icons';
+import dayjs from 'dayjs';
 
 const { Meta } = Card;
 
@@ -27,12 +28,12 @@ const PostItem: FC<Props> = ({ data }) => {
           title={data.title}
           description={data.contents.length > 52 ? data.contents.slice(0, 52) + '...' : data.contents}
         />
-        <Meta style={{ marginTop: '.8em' }} description={`작성자 : ${data.writerName}`} />
+        <Meta style={{ marginTop: '.8em' }} description={`작성자 : ${data.writerName ? data.writerName : '익명'}`} />
         <Meta
           style={{ marginTop: '.2em' }}
           description={
             <div>
-              {data.createdAt} | <MessageOutlined /> {data.comments.length}
+              {dayjs(data.createdAt).format('YYYY-MM-DD')} | <MessageOutlined /> {data.comments.length}
             </div>
           }
         />
