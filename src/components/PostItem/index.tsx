@@ -1,13 +1,23 @@
 import { Card } from 'antd';
-import React from 'react';
+import React, { FC } from 'react';
 import { CardItem } from './styles';
+import { useNavigate } from 'react-router-dom';
 
 const { Meta } = Card;
 
-const PostItem = () => {
+interface Props {
+  id: number;
+}
+
+const PostItem: FC<Props> = ({ id }) => {
+  const navigate = useNavigate();
+  const onClick = (id: number) => {
+    navigate(`/post/${id}`);
+  };
   return (
     <CardItem
       hoverable
+      onClick={() => onClick(id)}
       cover={
         <img
           alt='example'

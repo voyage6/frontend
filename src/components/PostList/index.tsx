@@ -10,7 +10,7 @@ const PostList: FC<Props> = ({ data }) => {
   return (
     <Wrapper>
       {data.map((d, idx) => (
-        <PostItem key={idx} />
+        <PostItem key={idx} id={idx} />
       ))}
     </Wrapper>
   );
