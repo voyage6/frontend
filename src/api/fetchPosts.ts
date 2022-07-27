@@ -1,14 +1,21 @@
+import axios from 'axios';
+import { AxiosManager } from '../services/AxiosManager';
+
 export const fetchPosts = async () => {
+  return AxiosManager.Instance.get('/api/posts/').then((res) => res.data);
   return [
     {
       id: 4,
       title: '악보4',
       writerName: '스파르타',
       writerId: 2,
-      contents: '악보4',
+      contents:
+        'A query is a declarative dependency on an asynchronous source of data that is tied to a unique key. A query can be used with any Promise based method (including GET and POST methods) to fetch data from a server. If your method modifies data on the server, we recommend using Mutations instead.A query is a declarative dependency on an asynchronous source of data that is tied to a unique key. A query can be used with any Promise based method (including GET and POST methods) to fetch data from a server. If your method modifies data on the server, we recommend using Mutations instead.A query is a declarative dependency on an asynchronous source of data that is tied to a unique key. A query can be used with any Promise based method (including GET and POST methods) to fetch data from a server. If your method modifies data on the server, we recommend using Mutations instead.A query is a declarative dependency on an asynchronous source of data that is tied to a unique key. A query can be used with any Promise based method (including GET and POST methods) to fetch data from a server. If your method modifies data on the server, we recommend using Mutations instead.',
       category: '피아노',
       imgUrls: [
-        'https://mycong.s3.ap-northeast-2.amazonaws.com/24304691-0af0-48e1-b847-36b6851a904c_%EC%95%85%EB%B3%B47.jpg',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
       ],
       comments: [
         {
@@ -35,8 +42,8 @@ export const fetchPosts = async () => {
       contents: '악보3',
       category: '피아노',
       imgUrls: [
-        'https://mycong.s3.ap-northeast-2.amazonaws.com/40d5df8a-3478-493b-9bfb-6eed43fcf43f_%EC%95%85%EB%B3%B45.png',
-        'https://mycong.s3.ap-northeast-2.amazonaws.com/92a40e9a-d241-4931-a8db-95c66fa04fc0_%EC%95%85%EB%B3%B46.png',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
       ],
       comments: [
         {
@@ -75,8 +82,10 @@ export const fetchPosts = async () => {
       contents: '악보2',
       category: '피아노',
       imgUrls: [
-        'https://mycong.s3.ap-northeast-2.amazonaws.com/2c513deb-a7aa-4d43-9dc1-246226693e02_%EC%95%85%EB%B3%B43.jpg',
-        'https://mycong.s3.ap-northeast-2.amazonaws.com/da965f8f-03b7-4bb0-b83c-8a388dc7ce84_%EC%95%85%EB%B3%B44.jpg',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
       ],
       comments: [
         {
@@ -97,8 +106,12 @@ export const fetchPosts = async () => {
       contents: '악보1',
       category: '바이올린',
       imgUrls: [
-        'https://mycong.s3.ap-northeast-2.amazonaws.com/66918dc4-6003-4315-9e97-87a26757c8e0_%EC%95%85%EB%B3%B41.jpg',
-        'https://mycong.s3.ap-northeast-2.amazonaws.com/11627a26-9d0f-4f30-89b8-94a30dc64fe2_%EC%95%85%EB%B3%B42.png',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
+        'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2119B63C55EE40600A',
       ],
       comments: [
         {

@@ -3,9 +3,6 @@ import { MaxWidthContainer } from '../../components/PostList/styles';
 import styled from 'styled-components';
 import SelectBox from '../../components/SelectBox';
 import UploadImage from '../../components/UploadImage';
-import { Divider, Input } from 'antd';
-
-const { TextArea } = Input;
 
 const WritePage = () => {
   return (
@@ -26,13 +23,13 @@ const WritePage = () => {
 
 export default WritePage;
 
-const SubTitle = styled.h1`
+export const SubTitle = styled.h1`
   font-weight: 700;
   font-size: 22px;
   line-height: 33px;
 `;
 
-const InputBox = styled.div`
+export const InputBox = styled.div`
   border: 1px solid #d9d9d9;
   min-height: 470px;
   padding: 2em;
@@ -59,7 +56,7 @@ const InputBox = styled.div`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   width: 72px;
   height: 28px;
   background: #ffc769;

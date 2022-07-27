@@ -2,8 +2,7 @@ import React from 'react';
 import { ButtonWrapper, HomeWrapper, WriteButton } from './styles';
 import PostList from '../../components/PostList';
 import { MaxWidthContainer, PostListHeader } from '../../components/PostList/styles';
-import { allPosts, recentPosts } from '../../services/mock';
-import { Divider, Spin } from 'antd';
+import { Divider } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPosts } from '../../api/fetchPosts';
@@ -29,7 +28,7 @@ const Home = () => {
           </WriteButton>
         </ButtonWrapper>
         <PostListHeader>인기 악보</PostListHeader>
-        <PostList data={data} />
+        <PostList data={data.filter((d) => d.comments.length >= 2)} />
         <Divider />
         <PostListHeader>최신 악보</PostListHeader>
         <PostList data={data} />

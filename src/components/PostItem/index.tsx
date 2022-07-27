@@ -22,7 +22,10 @@ const PostItem: FC<Props> = ({ data }) => {
       onClick={() => onClick(data.id)}
       cover={<img style={{ height: '400px', objectFit: 'contain' }} alt={data.title} src={data.imgUrls[0]} />}
     >
-      <Meta title={data.title} description={data.contents} />
+      <Meta
+        title={data.title}
+        description={data.contents.length > 52 ? data.contents.slice(0, 52) + '...' : data.contents}
+      />
       <Meta style={{ marginTop: '.8em' }} description={`작성자 : ${data.writerName}`} />
       <Meta
         style={{ marginTop: '.2em' }}
