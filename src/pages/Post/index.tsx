@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 import { MaxWidthContainer } from '../../components/PostList/styles';
 import { SubTitle } from './write';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -11,9 +11,7 @@ import styled from 'styled-components';
 import ImageSlider from '../../components/ImageSlider';
 import Comments from '../../components/Comments';
 import Editor from '../../components/CommentEditor';
-import { Input } from 'antd';
 import { addComment, CommentDto } from '../../api/addComment';
-import { AxiosManager } from '../../services/AxiosManager';
 import { deletePost } from '../../api/deletePost';
 
 const Detail = () => {
@@ -66,17 +64,18 @@ const Detail = () => {
         {data.title} <CategoryBox>{data.category}</CategoryBox>
       </SubTitle>
       <InfoBox>
-        {data.writerName} | {data.createdAt} <DeleteButton onClick={onDeletePost}>삭제</DeleteButton>
+        {data.writerName ? data.writerName : '익명'} | {data.createdAt}{' '}
+        <DeleteButton onClick={onDeletePost}>삭제</DeleteButton>
       </InfoBox>
       <ImageSlider data={data.imgUrls} />
       <TextContent>{data.contents}</TextContent>
       <Comments
         data={data.comments.map((c) => ({
-          author: 'username',
-          avatar: '/images/avatar.jpeg', //FIXME: 유저 프로필 이미지 등록하기 아니면 기본프로필 적용
+          author: c.writerName ? c.writerName : '익명',
+          avatar: c.profileUrl ? c.profileUrl : '/images/avatar.jpeg',
           content: c.contents,
           datetime: c.createdAt,
-          id: 9999,
+          id: c.id,
         }))}
       />
       <Editor onSubmit={onSubmit} submitting={submitting} onChange={onChange} value={commentValue} />
