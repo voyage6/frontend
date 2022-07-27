@@ -29,7 +29,7 @@ const WritePage = () => {
     if (res.status === 201) {
       navigate(-1);
     }
-  }, [category, images, title, contents]);
+  }, [category, images, title, contents, navigate]);
 
   return (
     <MaxWidthContainer style={{ padding: '2rem', maxWidth: '774px' }}>

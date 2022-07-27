@@ -12,8 +12,10 @@ export interface Post {
 }
 
 export interface Comment {
-  userId: number;
-  postId: number;
+  id: number;
+  writerName: string | null;
+  writerId: string | null;
+  profileUrl: string | null;
   contents: string;
   createdAt: string;
 }
