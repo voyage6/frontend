@@ -9,9 +9,12 @@ import { fetchPosts } from '../../api/fetchPosts';
 import { Post } from '../../typings/Post';
 import { AxiosError } from 'axios';
 import CenterSpinner from '../../components/CenterSpinner';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Home = () => {
   const navigate = useNavigate();
+  const selectedCategory = useSelector((state: RootState) => state.category.value);
 
   const { data } = useQuery<Post[], AxiosError>(['posts'], fetchPosts);
   if (!data) {
@@ -31,7 +34,7 @@ const Home = () => {
         <PostList data={data.filter((d) => d.comments.length >= 2)} />
         <Divider />
         <PostListHeader>최신 악보</PostListHeader>
-        <PostList data={data} />
+        <PostList data={selectedCategory === '전체' ? data : data.filter((d) => d.category === selectedCategory)} />
       </MaxWidthContainer>
     </HomeWrapper>
   );
