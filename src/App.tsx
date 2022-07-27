@@ -1,9 +1,16 @@
 import React from 'react';
 
-function App() {
+import Login from './components/Login';
+import MyPage from './components/MyPage';
+import Signup from './components/Signup';
+
+const App: React.FC = () => {
   return (
     <div className="App">
       <h1>HOME</h1>
+        {/* <Login/> */}
+        {/* <Signup/> */}
+        <MyPage/>
     </div>
   );
 }
