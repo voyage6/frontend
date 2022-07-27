@@ -1,14 +1,17 @@
 import { Select } from 'antd';
 import React, { useCallback } from 'react';
-import { openNotification } from '../../utils/notification';
 
 const { Option } = Select;
 
-const SelectBox: React.FC = () => {
+interface Props {
+  setCategory: (value: string) => void;
+}
+
+const SelectBox: React.FC<Props> = ({ setCategory }) => {
   const handleChange = useCallback((value: { value: string; label: React.ReactNode }) => {
     const category = value.value;
-    openNotification('bottom', '카테고리를 선택해주세요', '');
-    console.log(category);
+
+    setCategory(category);
   }, []);
 
   return (

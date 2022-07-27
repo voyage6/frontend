@@ -1,21 +1,47 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { MaxWidthContainer } from '../../components/PostList/styles';
 import styled from 'styled-components';
 import SelectBox from '../../components/SelectBox';
 import UploadImage from '../../components/UploadImage';
+import { createPost } from '../../api/createPost';
+import { openNotification } from '../../utils/notification';
+import { useNavigate } from 'react-router-dom';
 
 const WritePage = () => {
+  const [images, setImages] = useState<string[]>([]);
+  const [title, setTitle] = useState('');
+  const [contents, setContents] = useState('');
+  const [category, setCategory] = useState('');
+  const navigate = useNavigate();
+
+  const saveImagePath = useCallback((path: string) => {
+    setImages((prev) => [...prev, path]);
+  }, []);
+
+  const onSubmit = useCallback(async () => {
+    if (!category) {
+      return openNotification('bottom', '카테고리를 선택해주세요', '');
+    }
+    if (!title || !contents || images.length === 0) {
+      return openNotification('bottom', '이미지,제목,내용은 필수입니다.', '');
+    }
+    const res = await createPost({ title, contents, imgUrls: images, category });
+    if (res.status === 201) {
+      navigate(-1);
+    }
+  }, [category, images, title, contents]);
+
   return (
     <MaxWidthContainer style={{ padding: '2rem', maxWidth: '774px' }}>
       <SubTitle>글쓰기</SubTitle>
-      <SelectBox />
-      <UploadImage />
+      <SelectBox setCategory={setCategory} />
+      <UploadImage saveImagePath={saveImagePath} />
       <InputBox>
-        <input type='text' placeholder='제목' />
-        <textarea placeholder='내용을 입력하세요' />
+        <input type='text' placeholder='제목' value={title} onChange={(e) => setTitle(e.target.value)} />
+        <textarea placeholder='내용을 입력하세요' value={contents} onChange={(e) => setContents(e.target.value)} />
       </InputBox>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button>등록</Button>
+        <Button onClick={onSubmit}>등록</Button>
       </div>
     </MaxWidthContainer>
   );
