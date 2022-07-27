@@ -2,14 +2,16 @@ import { Card } from 'antd';
 import React, { FC } from 'react';
 import { CardItem } from './styles';
 import { useNavigate } from 'react-router-dom';
+import { Post } from '../../typings/Post';
+import { MessageOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
 interface Props {
-  id: number;
+  data: Post;
 }
 
-const PostItem: FC<Props> = ({ id }) => {
+const PostItem: FC<Props> = ({ data }) => {
   const navigate = useNavigate();
   const onClick = (id: number) => {
     navigate(`/post/${id}`);
@@ -17,17 +19,19 @@ const PostItem: FC<Props> = ({ id }) => {
   return (
     <CardItem
       hoverable
-      onClick={() => onClick(id)}
-      cover={
-        <img
-          alt='example'
-          src='https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F225351405785800C03'
-        />
-      }
+      onClick={() => onClick(data.id)}
+      cover={<img style={{ height: '400px', objectFit: 'contain' }} alt={data.title} src={data.imgUrls[0]} />}
     >
-      <Meta title='바람이 불어오는 곳' description='비오고 적적한날에 막걸리한잔하면서 듣기 좋은곡이에요 ㅎㅎ' />
-      <Meta style={{ marginTop: '.8em' }} description='작성자 : 유희열' />
-      <Meta style={{ marginTop: '.2em' }} description='2022-07-26 17:23' />
+      <Meta title={data.title} description={data.contents} />
+      <Meta style={{ marginTop: '.8em' }} description={`작성자 : ${data.writerName}`} />
+      <Meta
+        style={{ marginTop: '.2em' }}
+        description={
+          <div>
+            {data.createdAt} | <MessageOutlined /> {data.comments.length}
+          </div>
+        }
+      />
     </CardItem>
   );
 };
