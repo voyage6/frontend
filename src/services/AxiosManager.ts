@@ -9,6 +9,7 @@ export class AxiosManager {
     if (!this.instance) {
       this.instance = axios.create({
         baseURL: 'http://43.200.6.110',
+        withCredentials: true,
       });
     }
     return this.instance;

@@ -18,10 +18,6 @@ const Container: FC<Props> = ({ children }) => {
   const { changeTo } = categorySlice.actions;
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(selectedCategory);
-  }, [selectedCategory]);
-
   return (
     <Wrapper>
       <Header>
