@@ -26,12 +26,8 @@ const convertContent = (content: string) => {
 
 const convertDateTime = (dateTime: string) => {
   return (
-    <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-      <span>
-        {moment(moment(new Date(dateTime)))
-          .subtract(2, 'days')
-          .fromNow()}
-      </span>
+    <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm')}>
+      <span>{moment(dateTime).format('YYYY-MM-DD HH:mm:ss')}</span>
     </Tooltip>
   );
 };

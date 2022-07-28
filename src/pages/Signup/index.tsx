@@ -33,7 +33,7 @@ const SignupPage: React.FC = () => {
         userName: userName,
       });
       openNotification('bottom', '회원가입 성공', '');
-      navigate('/login');
+      window.location.href = '/login';
     } catch (e: any) {
       openNotification('bottom', '회원가입 실패', e.response.data, true);
     }

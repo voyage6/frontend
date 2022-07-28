@@ -35,7 +35,7 @@ const LoginPage: React.FC = () => {
       });
       axios.defaults.headers.common['Authorization'] = token;
       dispatch(setUser({ ...res.data, isLogin: true }));
-      navigate('/');
+      window.location.href = '/';
     } catch (e) {
       console.log(e);
       openNotification('bottom', '로그인 실패', '', true);
