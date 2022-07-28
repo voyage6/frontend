@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Typography, Form, Input } from 'antd';
 import { StyledForm, StyledTypography, StyledBtn } from './styles';
 import { useNavigate } from 'react-router-dom';
-import { AxiosManager } from '../../services/AxiosManager';
+
 import { openNotification } from '../../utils/notification';
+import instance from '../../services/AxiosManager';
 
 const { Link } = Typography;
 
@@ -26,7 +27,7 @@ const SignupPage: React.FC = () => {
 
   const SignupPost = async () => {
     try {
-      await AxiosManager.Instance.post('/api/users/signup', {
+      await instance.post('/api/users/signup', {
         userId: userId,
         userPassword: userPw,
         userName: userName,

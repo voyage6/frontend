@@ -4,7 +4,7 @@ import Container from './Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { getCookies } from '../utils/cookie';
-import { AxiosManager } from '../services/AxiosManager';
+import instance from '../services/AxiosManager';
 import { userSlice } from '../redux/features/userSlice';
 
 const Home = React.lazy(() => import('../pages/Home'));
@@ -22,7 +22,7 @@ function App() {
 
   const handleAutoLogin = useCallback(
     async (token: string) => {
-      const res = await AxiosManager.Instance.get('/api/users', {
+      const res = await instance.get('/api/users', {
         headers: {
           Authorization: token,
         },

@@ -4,7 +4,7 @@ import { StyledForm, StyledTypography, StyledFormItem, StyledBtn } from './style
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setCookies } from '../../utils/cookie';
-import { AxiosManager } from '../../services/AxiosManager';
+import instance from '../../services/AxiosManager';
 import { openNotification } from '../../utils/notification';
 import { useDispatch } from 'react-redux';
 import { userSlice } from '../../redux/features/userSlice';
@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
   const LoginPost = async () => {
     let token;
     try {
-      const res = await AxiosManager.Instance.post('/api/users/login', { userId, userPassword: userPw });
+      const res = await instance.post('/api/users/login', { userId, userPassword: userPw });
       token = res.data;
       setCookies('token', token);
     } catch (e: any) {
@@ -28,7 +28,7 @@ const LoginPage: React.FC = () => {
     }
 
     try {
-      const res = await AxiosManager.Instance.get('/api/users', {
+      const res = await instance.get('/api/users', {
         headers: {
           Authorization: token,
         },
