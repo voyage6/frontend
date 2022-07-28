@@ -33,6 +33,7 @@ const LoginPage: React.FC = () => {
           Authorization: token,
         },
       });
+      axios.defaults.headers.common['Authorization'] = token;
       dispatch(setUser({ ...res.data, isLogin: true }));
       navigate('/');
     } catch (e) {
