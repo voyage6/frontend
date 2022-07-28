@@ -5,7 +5,7 @@ interface User {
   createdAt?: string;
   imgUrl?: string | null;
   updatedAt?: string;
-  userId?: number;
+  userId?: number | null;
   userName?: string;
 }
 
@@ -22,7 +22,11 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       state.isLogin = false;
-      state = initialState;
+      state.createdAt = '';
+      state.imgUrl = '';
+      state.updatedAt = '';
+      state.userId = null;
+      state.userName = '';
     },
     setUser: (state, action: PayloadAction<User>) => {
       state.createdAt = action.payload.createdAt;
