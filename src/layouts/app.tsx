@@ -6,6 +6,7 @@ import { RootState } from '../redux/store';
 import { getCookies } from '../utils/cookie';
 import instance from '../services/AxiosManager';
 import { userSlice } from '../redux/features/userSlice';
+import axios from 'axios';
 
 const Home = React.lazy(() => import('../pages/Home'));
 const LoginPage = React.lazy(() => import('../pages/Login'));
@@ -27,6 +28,7 @@ function App() {
           Authorization: token,
         },
       });
+      axios.defaults.headers.common['Authorization'] = getCookies('token');
       dispatch(setUser({ ...res.data, isLogin: true }));
       navigate('/');
     },
