@@ -1,5 +1,5 @@
 import { Badge, Card } from 'antd';
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { CardItem } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { Post } from '../../typings/Post';
@@ -12,13 +12,26 @@ interface Props {
   data: Post;
 }
 
+const badgeTabe: { [key: string]: string } = {
+  피아노: '#ffc769',
+  기타: '#D75281',
+  드럼: '#0096FF',
+  우쿨렐레: '#5A8F7B',
+  오르골: '#CA955C',
+  클라리넷: '#EF5B0C',
+  계이름: '#B2A4FF',
+};
+
 const PostItem: FC<Props> = ({ data }) => {
   const navigate = useNavigate();
   const onClick = (id: number) => {
     navigate(`/post/${id}`);
   };
+
+  const color = useMemo(() => badgeTabe[data.category], [data]);
+
   return (
-    <Badge.Ribbon text={data.category} color='#ffc769'>
+    <Badge.Ribbon text={data.category} color={color}>
       <CardItem
         hoverable
         onClick={() => onClick(data.id)}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AxiosManager } from '../services/AxiosManager';
+import instance from '../services/AxiosManager';
 
 export interface CommentDto {
   postId: number;
@@ -7,5 +7,5 @@ export interface CommentDto {
 }
 
 export function addComment({ postId, contents }: CommentDto) {
-  return AxiosManager.Instance.post(`/api/posts/${postId}/comments`, { contents }).then((res) => res.data);
+  return instance.post(`/api/posts/${postId}/comments`, { contents }).then((res) => res.data);
 }

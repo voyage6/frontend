@@ -1,4 +1,4 @@
-import { AxiosManager } from '../services/AxiosManager';
+import instance from '../services/AxiosManager';
 
 export interface PostDto {
   title: string;
@@ -8,5 +8,5 @@ export interface PostDto {
 }
 
 export function createPost(newPost: PostDto) {
-  return AxiosManager.Instance.post(`/api/posts`, newPost);
+  return instance.post(`/api/posts`, newPost);
 }

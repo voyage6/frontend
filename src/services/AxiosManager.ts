@@ -1,22 +1,12 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
+import { getCookies } from '../utils/cookie';
 
-export class AxiosManager {
-  private static instance: AxiosInstance;
+const instance = axios.create({
+  baseURL: 'http://43.200.6.110',
+  withCredentials: true,
+  headers: {
+    Authorization: getCookies('token'),
+  },
+});
 
-  private constructor() {}
-
-  static get Instance() {
-    if (!this.instance) {
-      this.instance = axios.create({
-        baseURL: 'http://43.200.6.110',
-      });
-    }
-    return this.instance;
-  }
-
-  static chanageUrl(url: string) {
-    AxiosManager.instance = axios.create({
-      baseURL: url,
-    });
-  }
-}
+export default instance;

@@ -1,5 +1,5 @@
-import { AxiosManager } from '../services/AxiosManager';
+import instance from '../services/AxiosManager';
 
 export function deletePost(id: number) {
-  return AxiosManager.Instance.delete(`/api/posts/${id}`);
+  return instance.delete(`/api/posts/${id}`);
 }

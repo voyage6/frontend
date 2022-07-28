@@ -26,7 +26,7 @@ const WritePage = () => {
       return openNotification('bottom', '이미지,제목,내용은 필수입니다.', '');
     }
     const res = await createPost({ title, contents, imgUrls: images, category });
-    if (res.status === 201) {
+    if (res.status >= 200 && res.status < 400) {
       navigate(-1);
     }
   }, [category, images, title, contents, navigate]);
