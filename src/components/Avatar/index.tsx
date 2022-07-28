@@ -3,10 +3,12 @@ import { UserOutlined } from '@ant-design/icons';
 import React, { useCallback, useState } from 'react';
 import { Wapper } from './styles';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userSlice } from '../../redux/features/userSlice';
+import { RootState } from '../../redux/store';
 
 const AvatarWapper = () => {
+  const user = useSelector((state: RootState) => state.user);
   const [showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
   const { logout } = userSlice.actions;
@@ -24,7 +26,7 @@ const AvatarWapper = () => {
 
   return (
     <Wapper onMouseOver={onShowMenu} onMouseLeave={onHideMenu}>
-      <Avatar size={30} icon={<UserOutlined />} />
+      <Avatar size={30} icon={<UserOutlined />} src={user.imgUrl ? user.imgUrl : ''} />
       {showMenu && (
         <ul>
           <li>
