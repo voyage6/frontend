@@ -77,6 +77,7 @@ const Detail = () => {
           author: c.writerName ? c.writerName : '익명',
           avatar: c.profileUrl ? c.profileUrl : '/images/avatar.jpeg',
           content: c.contents,
+          writerId: c.writerId || '',
           datetime: c.createdAt,
           id: c.id,
         }))}

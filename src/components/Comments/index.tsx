@@ -11,6 +11,7 @@ interface IComment {
   author: string;
   avatar: string;
   content: string;
+  writerId: string;
   datetime: string;
   id: number;
 }
@@ -67,7 +68,7 @@ const Comments: React.FC<Props> = ({ data }) => {
             content={convertContent(item.content)}
             datetime={convertDateTime(item.datetime)}
             actions={
-              item.author === user.userName
+              item.writerId === user?.userId?.toString()
                 ? [
                     <span key='comment-nested-reply-to' onClick={() => onDelete(item.id)}>
                       삭제

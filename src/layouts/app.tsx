@@ -46,20 +46,32 @@ function App() {
     }
   }, [user]);
 
-  return (
-    <Suspense>
-      <Container>
+  if (user.isLogin) {
+    return (
+      <Suspense>
+        <Container>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignupPage />} />
+            <Route path='/mypage' element={<MyPage />} />
+            <Route path='/post/:id' element={<PostPage />} />
+            <Route path='/write' element={<WritePage />} />
+          </Routes>
+        </Container>
+      </Suspense>
+    );
+  } else {
+    return (
+      <Suspense>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />
-          <Route path='/mypage' element={<MyPage />} />
-          <Route path='/post/:id' element={<PostPage />} />
-          <Route path='/write' element={<WritePage />} />
         </Routes>
-      </Container>
-    </Suspense>
-  );
+      </Suspense>
+    );
+  }
 }
 
 export default App;
