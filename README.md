@@ -1,8 +1,9 @@
 # ChumKong!(춤추는콩나물)
 
-<img width="738" alt="스크린샷 2022-07-28 오후 8 36 11" src="https://user-images.githubusercontent.com/61547778/181496143-366db50c-8dc0-4ca1-88b9-32bbd87b66a3.png">
-<img width="784" alt="스크린샷 2022-07-28 오후 8 36 28" src="https://user-images.githubusercontent.com/61547778/181496153-55974ec1-0ddb-4b15-af31-5b04deb59bb2.png">
 <img width="1325" alt="스크린샷 2022-07-28 오후 8 36 01" src="https://user-images.githubusercontent.com/61547778/181496161-acae82d5-0b15-44a2-89f4-36dfa11bf30e.png">
+<img width="784" alt="스크린샷 2022-07-28 오후 8 36 28" src="https://user-images.githubusercontent.com/61547778/181496153-55974ec1-0ddb-4b15-af31-5b04deb59bb2.png">
+<img width="738" alt="스크린샷 2022-07-28 오후 8 36 11" src="https://user-images.githubusercontent.com/61547778/181496143-366db50c-8dc0-4ca1-88b9-32bbd87b66a3.png">
+
 
 
 ## Stack
