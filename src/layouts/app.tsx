@@ -44,7 +44,7 @@ function App() {
     if (!user.isLogin) {
       navigate('/login');
     }
-  }, [navigate, user]);
+  }, [user]);
 
   return (
     <Suspense>

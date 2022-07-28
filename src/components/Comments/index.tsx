@@ -4,6 +4,8 @@ import React, { useCallback } from 'react';
 import { removeComment } from '../../api/removeComment';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 interface IComment {
   author: string;
@@ -36,6 +38,7 @@ const convertDateTime = (dateTime: string) => {
 const Comments: React.FC<Props> = ({ data }) => {
   const { id } = useParams();
   const queryClient = useQueryClient();
+  const user = useSelector((state: RootState) => state.user);
 
   const { mutate } = useMutation((commentId: number) => removeComment(commentId), {
     onSuccess: () => {
@@ -63,11 +66,15 @@ const Comments: React.FC<Props> = ({ data }) => {
             avatar={item.avatar}
             content={convertContent(item.content)}
             datetime={convertDateTime(item.datetime)}
-            actions={[
-              <span key='comment-nested-reply-to' onClick={() => onDelete(item.id)}>
-                삭제
-              </span>,
-            ]}
+            actions={
+              item.author === user.userName
+                ? [
+                    <span key='comment-nested-reply-to' onClick={() => onDelete(item.id)}>
+                      삭제
+                    </span>,
+                  ]
+                : []
+            }
           />
         </li>
       )}

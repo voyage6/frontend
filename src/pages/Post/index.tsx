@@ -13,6 +13,8 @@ import Comments from '../../components/Comments';
 import Editor from '../../components/CommentEditor';
 import { addComment, CommentDto } from '../../api/addComment';
 import { deletePost } from '../../api/deletePost';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Detail = () => {
   const { id } = useParams();
@@ -27,6 +29,7 @@ const Detail = () => {
       setSubmitting(false);
     },
   });
+  const user = useSelector((state: RootState) => state.user);
 
   const onDeletePost = useCallback(async () => {
     if (!id) return;
@@ -52,7 +55,7 @@ const Detail = () => {
     mutate({ postId: parseInt(id), contents: commentValue });
     setCommentValue('');
     setSubmitting(true);
-  }, [commentValue]);
+  }, [commentValue, id, mutate]);
 
   if (!data) {
     return <CenterSpinner />;
@@ -65,7 +68,7 @@ const Detail = () => {
       </SubTitle>
       <InfoBox>
         {data.writerName ? data.writerName : '익명'} | {data.createdAt}{' '}
-        <DeleteButton onClick={onDeletePost}>삭제</DeleteButton>
+        {data.writerId === user.userId && <DeleteButton onClick={onDeletePost}>삭제</DeleteButton>}
       </InfoBox>
       <ImageSlider data={data.imgUrls} />
       <TextContent>{data.contents}</TextContent>
